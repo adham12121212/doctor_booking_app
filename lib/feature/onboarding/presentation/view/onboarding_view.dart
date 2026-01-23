@@ -1,0 +1,14 @@
+import 'package:flutter/material.dart';
+
+import '../widgets/onboarding_view_body.dart';
+
+class OnboardingView extends StatelessWidget {
+  const OnboardingView({super.key});
+
+  static const routeName = 'onboarding';
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(body: const OnboardingViewBody());
+  }
+}
