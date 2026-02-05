@@ -1,16 +1,49 @@
-# booked_app
-
-A new Flutter project.
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+🩺 Doctor Booking App (Flutter)
+A production-style Doctor Booking Mobile Application built using Flutter & Dart, following Clean Architecture and Bloc/Cubit for scalable state management.
+The app supports Patient & Doctor roles, real-time appointment booking, notifications, and secure backend integration using Firebase and Supabase.
+🚀 Features
+👤 Patient
+Sign up / login with Firebase Authentication
+Browse doctors
+Book appointments (day & time)
+Receive booking notifications
+View appointment history
+🩺 Doctor
+Doctor dashboard
+Accept or reject appointments
+Manage availability
+Complete doctor profile
+Upload profile image (Supabase Storage)
+🛠 Tech Stack
+Flutter & Dart
+Bloc / Cubit (State Management)
+Clean Architecture
+Firebase Authentication
+Cloud Firestore (Real-time database)
+Supabase Storage (Image uploads)
+MVVM / Layered Architecture
+Responsive UI
+Git & GitHub
+🧱 Architecture
+The project follows Clean Architecture:
+Presentation Layer (UI + Cubits)
+Domain Layer (Entities + Use Cases)
+Data Layer (Repositories + Firebase Services)
+This ensures scalability, testability, and maintainability.
+📱 Core Modules
+Authentication
+Doctor Profile
+Appointment Booking
+Notifications
+Doctor Dashboard
+Image Upload
+🎯 Purpose
+Built to demonstrate real-world Flutter development including:
+✅ State management
+✅ Backend integration
+✅ Role-based flow
+✅ Clean architecture
+✅ Production patterns
+👨‍💻 Author
+Adham Bassiouny
+Junior Flutter Developer
