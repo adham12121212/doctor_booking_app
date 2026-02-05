@@ -111,6 +111,7 @@ class SignupViewBody extends StatelessWidget {
                             ),
                             // Login Button
                             CustomAuthButton(
+                              text: 'SignUp',
                               onTap: (){
                                 if (_formKey.currentState!.validate()) {
                                   context.read<SignupCubit>().createEmailAndPassword(
@@ -119,9 +120,6 @@ class SignupViewBody extends StatelessWidget {
                                     nameController.text,
                                   );
                                 }
-                                nameController.clear();
-                                emailController.clear();
-                                passwordController.clear();
                               },
                             ),
                           ],

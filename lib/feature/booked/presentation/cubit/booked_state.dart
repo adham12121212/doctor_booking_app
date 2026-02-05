@@ -5,6 +5,8 @@ sealed class BookedState {}
 
 final class BookedInitial extends BookedState {}
 
+final class BookedLoading extends BookedState {}
+
 final class BookedSuccess extends BookedState {
   final List<BookedEntity> booked;
   BookedSuccess({required this.booked});

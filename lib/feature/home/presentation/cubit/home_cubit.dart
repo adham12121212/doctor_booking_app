@@ -49,13 +49,12 @@ class HomeCubit extends Cubit<HomeState> {
     } else {
       doctorsFiltered = allDoctors
           .where((doctor) =>
-          doctor.speciality.toLowerCase().contains(speciality.toLowerCase()))
+          doctor.speciality.toLowerCase().startsWith(speciality.toLowerCase()))
           .toList();
     }
 
     emit(HomeSuccess(doctors: doctorsFiltered));
   }
-
 
   void filterBySearch(String search) {
 
@@ -65,7 +64,6 @@ class HomeCubit extends Cubit<HomeState> {
 
     emit(HomeSuccess(doctors: filterSearch));
   }
-
   // may be used in the future
   void resetFilter() {
     selectedCategory = 0;
@@ -78,5 +76,18 @@ class HomeCubit extends Cubit<HomeState> {
 
     emit(HomeSuccess(doctors: filteredDoctors));
   }
+
+  Future<void> addDoctor({required DoctorEntity doctorEntity}) async{
+    emit(HomeLoading());
+    try{
+      await homeRepo.addDoctor(doctorEntity: doctorEntity);
+      final updatedDoctors = await homeRepo.getDoctors();
+      emit(HomeSuccess(doctors: updatedDoctors));
+    }catch(e){
+      emit(HomeFailure(error: e.toString()));
+    }
+  }
+
+
 
 }

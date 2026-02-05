@@ -7,11 +7,16 @@ import '../constants/app_texts.dart';
 class AnimatedConfirmButton extends StatefulWidget {
   final Future<void> Function() onPressedAsync;
   final String text;
+  final double height ;
+  final double width;
 
   const AnimatedConfirmButton({
     super.key,
     required this.onPressedAsync,
     required this.text,
+    this.height =50,
+    this.width =200,
+
   });
 
   @override
@@ -76,8 +81,8 @@ class _AnimatedConfirmButtonState extends State<AnimatedConfirmButton> {
         duration: const Duration(milliseconds: 100),
         curve: Curves.easeOut,
         child: Container(
-          height: 50.h,
-          width: 200.w,
+          height: widget.height,
+          width: widget.width,
           decoration: BoxDecoration(
             color: AppColors.blueColor,
             borderRadius: BorderRadius.circular(20),

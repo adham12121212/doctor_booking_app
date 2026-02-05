@@ -10,7 +10,7 @@ class BookedButton extends StatelessWidget {
   const BookedButton({
     super.key, required this.doctorId,
   });
-    final int doctorId;
+    final String doctorId;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(

@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../core/constants/app_texts.dart';
 import '../../../auth/login/presentation/cubit/login_cubit.dart';
+import '../view/notification_view.dart';
 
 class HeaderWidget extends StatelessWidget {
   const HeaderWidget({
@@ -15,7 +16,9 @@ class HeaderWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    int count =1;
+
+  return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Row(
@@ -24,15 +27,14 @@ class HeaderWidget extends StatelessWidget {
             BlocBuilder<SignupCubit, SignupState>(
               builder: (context, state) {
                 String displayName = '';
-
                 if (state is SignupSuccess) {
-                  displayName = state.userEntity.name; // <-- use userEntity
+                  displayName = state.userEntity.name;
                    print(displayName);
                 }
 
                 return Text(
-                  displayName.isNotEmpty ? displayName : 'Guest',
-                  style: AppTextStyles.regular16.copyWith(
+                  displayName.isNotEmpty ? 'Hi,${displayName}' : 'Guest',
+                  style: AppTextStyles.medium20.copyWith(
                     color: Colors.white,
                   ),
                 );
@@ -40,7 +42,7 @@ class HeaderWidget extends StatelessWidget {
             ),
             GestureDetector(
               onTap: (){
-                context.read<HomeCubit>().signOut();
+                Navigator.pushNamed(context, NotificationView.routeName);
               },
               child: Container(
                 width: 48,
@@ -49,9 +51,16 @@ class HeaderWidget extends StatelessWidget {
                   color: Colors.white38,
                   borderRadius: BorderRadius.circular(14),
                 ),
-                child: Icon(
-                  Icons.notifications_none_rounded,
-                  color: Colors.white,
+                child: Badge(
+                  label: Text(count > 10 ? '10+' : '$count'),
+                  largeSize: 19,
+                  child: Center(
+                    child: Icon(
+                      size: 30,
+                      Icons.notifications_none_rounded,
+                      color: Colors.white,
+                    ),
+                  ),
                 ),
               ),
             ),

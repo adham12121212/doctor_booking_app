@@ -10,7 +10,7 @@ class SeeMoreText extends StatefulWidget {
   const SeeMoreText({
     super.key,
     required this.text,
-    this.trimLines = 5,
+    this.trimLines = 4,
   });
 
   @override
@@ -28,7 +28,7 @@ class _SeeMoreTextState extends State<SeeMoreText> {
         final textPainter = TextPainter(
           text: TextSpan(
             text: widget.text,
-            style: AppTextStyles.regular12.copyWith(color: Colors.grey),
+            style: AppTextStyles.medium16.copyWith(color: Colors.grey),
 
           ),
           maxLines: widget.trimLines,

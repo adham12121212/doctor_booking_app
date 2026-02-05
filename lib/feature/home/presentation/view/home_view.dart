@@ -1,5 +1,6 @@
 import 'package:booked_app/feature/appointment/presentation/widgets/appointment_view_body.dart';
 import 'package:booked_app/feature/home/presentation/widgets/home_view_body.dart';
+import 'package:booked_app/feature/settings/presentation/view/settings_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../core/helper_functions/get_it.dart';
@@ -24,7 +25,7 @@ class _HomeViewState extends State<HomeView> {
   final List<Widget> screens = const [
     HomeViewBody(doctors: []),
     AppointmentView(),
-    Center(child: Text('Settings')),
+    SettingsView(),
   ];
 
   @override
@@ -42,7 +43,7 @@ class _HomeViewState extends State<HomeView> {
           BlocProvider(
             create: (context) => SignupCubit(
               getIt.get<AuthRepo>(),
-            ),
+            )..getUser(),
           ),
         ],
         child: Scaffold(

@@ -4,4 +4,5 @@ import '../entity/doctor_entity.dart';
 
 abstract class HomeRepo{
   Future<List<DoctorEntity>> getDoctors();
+  Future<void> addDoctor({required DoctorEntity doctorEntity});
 }

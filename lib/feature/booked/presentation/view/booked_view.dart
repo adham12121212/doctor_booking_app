@@ -12,7 +12,7 @@ import '../cubit/booked_cubit.dart';
 class BookedView extends StatelessWidget {
   const BookedView({super.key, required this.doctorId});
 
-  final int doctorId;
+  final String doctorId;
 
   static const routeName = 'booked';
 

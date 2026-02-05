@@ -1,3 +1,4 @@
+import 'package:booked_app/feature/details/presentation/widgets/doctor_image.dart';
 import 'package:booked_app/feature/home/presentation/widgets/rating_chip.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -41,13 +42,10 @@ class DoctorCard extends StatelessWidget {
             /// Doctor image
             ClipRRect(
               borderRadius: BorderRadius.circular(14.r),
-              child: Image.network(
-                doctor.image,
-                width: 70.w,
-                fit: BoxFit.cover,
-                errorBuilder: (_, __, ___) =>
-                 Icon(Icons.person, size: 60.w),
-              ),
+              child:DoctorImage(
+                  image: doctor.image,
+                  width: 70,
+                  height: 100)
             ),
              SizedBox(width: 10.w),
             /// Doctor info

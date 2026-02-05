@@ -1,1 +1,54 @@
-{"flutter":{"platforms":{"android":{"default":{"projectId":"bookingapp-d4d76","appId":"1:218795790824:android:29720cec9101abcd91d45d","fileOutput":"android/app/google-services.json"}},"ios":{"default":{"projectId":"bookingapp-d4d76","appId":"1:218795790824:ios:f389d535aad7cf6391d45d","uploadDebugSymbols":false,"fileOutput":"ios/Runner/GoogleService-Info.plist"}},"macos":{"default":{"projectId":"bookingapp-d4d76","appId":"1:218795790824:ios:f389d535aad7cf6391d45d","uploadDebugSymbols":false,"fileOutput":"macos/Runner/GoogleService-Info.plist"}},"dart":{"lib/firebase_options.dart":{"projectId":"bookingapp-d4d76","configurations":{"android":"1:218795790824:android:29720cec9101abcd91d45d","ios":"1:218795790824:ios:f389d535aad7cf6391d45d","macos":"1:218795790824:ios:f389d535aad7cf6391d45d","web":"1:218795790824:web:9fd81e649d9ca6de91d45d","windows":"1:218795790824:web:ba1e0177f013ded591d45d"}}}}}}
+{
+  "flutter": {
+    "platforms": {
+      "android": {
+        "default": {
+          "projectId": "bookingapp-d4d76",
+          "appId": "1:218795790824:android:29720cec9101abcd91d45d",
+          "fileOutput": "android/app/google-services.json"
+        }
+      },
+      "ios": {
+        "default": {
+          "projectId": "bookingapp-d4d76",
+          "appId": "1:218795790824:ios:f389d535aad7cf6391d45d",
+          "uploadDebugSymbols": false,
+          "fileOutput": "ios/Runner/GoogleService-Info.plist"
+        }
+      },
+      "macos": {
+        "default": {
+          "projectId": "bookingapp-d4d76",
+          "appId": "1:218795790824:ios:f389d535aad7cf6391d45d",
+          "uploadDebugSymbols": false,
+          "fileOutput": "macos/Runner/GoogleService-Info.plist"
+        }
+      },
+      "dart": {
+        "lib/firebase_options.dart": {
+          "projectId": "bookingapp-d4d76",
+          "configurations": {
+            "android": "1:218795790824:android:29720cec9101abcd91d45d",
+            "ios": "1:218795790824:ios:f389d535aad7cf6391d45d",
+            "macos": "1:218795790824:ios:f389d535aad7cf6391d45d",
+            "web": "1:218795790824:web:9fd81e649d9ca6de91d45d",
+            "windows": "1:218795790824:web:ba1e0177f013ded591d45d"
+          }
+        }
+      }
+    }
+  },
+  "functions": [
+    {
+      "source": "functions",
+      "codebase": "default",
+      "ignore": [
+        "node_modules",
+        ".git",
+        "firebase-debug.log",
+        "firebase-debug.*.log",
+        "*.local"
+      ]
+    }
+  ]
+}

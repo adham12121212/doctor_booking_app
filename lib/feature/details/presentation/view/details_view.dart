@@ -9,7 +9,7 @@ import '../widgets/booked_button.dart';
 
 class DetailsView extends StatelessWidget {
   const DetailsView({super.key, required this.doctorId});
-  final int doctorId;
+  final String doctorId;
   static const routeName = 'details';
 
   @override
