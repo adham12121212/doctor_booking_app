@@ -14,11 +14,28 @@ class BookedRepoImpl implements BookedRepo{
   @override
   Future<void> addBookedData({required BookedEntity entity}) async {
     final uid = FirebaseAuth.instance.currentUser!.uid;
-
     await fireStoreDataService.addBookedData(
       path: EndPoint.addUser,
       data: BookedModel.fromEntity(entity).toMap(),
+      secPath: 'booked',
       documentId: uid,
+    );
+  }
+
+  @override
+  Future<List<BookedEntity>> getBookedData() async{
+    final uid = FirebaseAuth.instance.currentUser!.uid;
+    final data = await fireStoreDataService.getBookedData(path: EndPoint.addUser, documentId: uid);
+    return data.map((e) => BookedModel.fromJson(e).toEntity()).toList();
+  }
+
+  @override
+  Future<void> addDoctorBookedData({required BookedEntity entity}) async{
+    await fireStoreDataService.addBookedData(
+      path: EndPoint.doctors,
+      data: BookedModel.fromEntity(entity).toMap(),
+      secPath: 'Appointment',
+      documentId: entity.doctorUid,
     );
   }
 

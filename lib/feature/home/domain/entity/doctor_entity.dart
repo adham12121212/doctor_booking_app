@@ -1,5 +1,6 @@
+
 class DoctorEntity {
-  final int id;
+  final String uid;
   final String name;
   final String image;
   final String speciality;
@@ -9,10 +10,14 @@ class DoctorEntity {
   final int experienceYears;
   final bool isAvailable;
   final int patients;
+  final String aboutText;
 
-  const DoctorEntity(
-      this.patients, {
-    required this.id,
+
+
+  DoctorEntity(
+      {
+    required this.aboutText,
+    required this.uid,
     required this.name,
     required this.image,
     required this.speciality,
@@ -21,5 +26,9 @@ class DoctorEntity {
     required this.price,
     required this.experienceYears,
     required this.isAvailable,
+    required this.patients,
   });
+
+
+
 }

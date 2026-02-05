@@ -28,7 +28,15 @@ class SignupCubit extends Cubit<SignupState> {
     }
   }
 
-
+  Future<void> getUser() async{
+     try {
+        final userEntity = await authRepo.getUser();
+        emit(SignupSuccess(userEntity));
+     } catch (e) {
+       log('catch in cubit signup network exception: $e');
+       emit(SignupFailure(error: e.toString()));
+     }
+  }
 
 
 

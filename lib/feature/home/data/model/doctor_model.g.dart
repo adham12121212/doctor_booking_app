@@ -7,7 +7,8 @@ part of 'doctor_model.dart';
 // **************************************************************************
 
 DoctorModel _$DoctorModelFromJson(Map<String, dynamic> json) => DoctorModel(
-  id: (json['id'] as num).toInt(),
+  aboutText: json['aboutText'] as String,
+  uid: json['uid'] as String,
   name: json['name'] as String,
   image: json['image'] as String,
   speciality: json['speciality'] as String,
@@ -21,7 +22,7 @@ DoctorModel _$DoctorModelFromJson(Map<String, dynamic> json) => DoctorModel(
 
 Map<String, dynamic> _$DoctorModelToJson(DoctorModel instance) =>
     <String, dynamic>{
-      'id': instance.id,
+      'uid': instance.uid,
       'name': instance.name,
       'image': instance.image,
       'speciality': instance.speciality,
@@ -31,4 +32,5 @@ Map<String, dynamic> _$DoctorModelToJson(DoctorModel instance) =>
       'experienceYears': instance.experienceYears,
       'isAvailable': instance.isAvailable,
       'patients': instance.patients,
+      'aboutText': instance.aboutText,
     };

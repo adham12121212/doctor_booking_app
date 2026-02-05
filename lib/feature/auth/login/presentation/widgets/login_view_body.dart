@@ -102,13 +102,14 @@ class LoginViewBody extends StatelessWidget {
                         ),
                         // Login Button
                         CustomAuthButton(
+                          text: 'Login',
                           onTap: () {
                             if (_formKey.currentState!.validate()) {
                               context.read<LoginCubit>().loginEmailAndPassword(
-                                  email: emailController.text.trim(), password: passwordController.text.trim());
+                                  email: emailController.text.trim(),
+                                  password: passwordController.text.trim());
                             }
-                            emailController.clear();
-                            passwordController.clear();
+
                           },
                         ),
                       ],

@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:meta/meta.dart';
 
 import '../../domain/booked_repo/booked_repo.dart';
@@ -13,42 +14,44 @@ class BookedCubit extends Cubit<BookedState> {
   String? selectedDay;
   String? selectedTime;
 
-  void selectDay(String day) {
-    selectedDay = day;
-  }
+  void selectDay(String day) => selectedDay = day;
+  void selectTime(String time) => selectedTime = time;
 
-  void selectTime(String time) {
-    selectedTime = time;
-  }
+  Future<void> confirmBooking(String doctorName, String image, String uid) async {
+    final patientUid = FirebaseAuth.instance.currentUser!.uid;
+    final patientName = FirebaseAuth.instance.currentUser!.displayName;
 
-  Future<void> confirmBooking(String doctorName) async {
-    print('CONFIRM CLICKED');
-
-    print('DAY = $selectedDay');
-    print('TIME = $selectedTime');
-    print('DOCTOR = $doctorName');
 
     if (selectedDay == null || selectedTime == null) {
-      print('❌ DAY OR TIME IS NULL');
       emit(BookedError(message: 'Please select day and time'));
       return;
     }
 
     final entity = BookedEntity(
+      image: image,
       doctorName: doctorName,
+      patientUid: patientUid,
+      doctorUid: uid,
       day: selectedDay!,
       time: selectedTime!,
+      patientName: patientName!
     );
-
     try {
       await bookedRepo.addBookedData(entity: entity);
-      print('✅ DATA SENT TO FIREBASE');
+      await bookedRepo.addDoctorBookedData(entity: entity);
       emit(BookedSuccess(booked: [entity]));
-    } catch (e, s) {
-      print('🔥 FIREBASE ERROR: $e');
-      print(s);
+    } catch (e) {
+      emit(BookedError(message: e.toString()));
+    }
+  }
+
+  Future<void> getBookedApointment() async {
+    emit(BookedLoading());
+    try {
+      final data = await bookedRepo.getBookedData();
+      emit(BookedSuccess(booked: data));
+    } catch (e) {
       emit(BookedError(message: e.toString()));
     }
   }
 }
-

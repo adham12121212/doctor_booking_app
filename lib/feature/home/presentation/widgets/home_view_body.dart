@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../core/constants/app_colors.dart';
 import '../../../../core/constants/app_texts.dart';
 import '../../../auth/login/presentation/cubit/login_cubit.dart';
@@ -29,10 +30,10 @@ class HomeViewBody extends StatelessWidget {
           automaticallyImplyLeading: false,
           pinned: true,
           elevation: 0,
-          collapsedHeight: 230,
+          collapsedHeight: 230.h,
           backgroundColor: AppColors.blueColor,
           scrolledUnderElevation: 0,
-          toolbarHeight: 220,
+          toolbarHeight: 220.h,
           //heading
           title: HeaderWidget(
             onChanged: (value) {
@@ -42,22 +43,22 @@ class HomeViewBody extends StatelessWidget {
         ),
         SliverToBoxAdapter(
           child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 16.0),
+            padding: EdgeInsets.symmetric(horizontal: 16.0.w),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SizedBox(height: 20,),
+                SizedBox(height: 20.h,),
                 Text('Categories',style:AppTextStyles.medium20 ,),
-                SizedBox(height: 15,),
+                SizedBox(height: 15.h,),
                 CategoryHome(),
-                SizedBox(height: 15,),
+                SizedBox(height: 15.h,),
                 BlocBuilder<HomeCubit, HomeState>(
                   builder: (context, state) {
                     if (state is HomeLoading) {
                       return Column(
 
                         children: [
-                          SizedBox(height: 180,),
+                          SizedBox(height: 180.h,),
                           const Center(child: CupertinoActivityIndicator()),
                         ],
                       );
@@ -70,7 +71,7 @@ class HomeViewBody extends StatelessWidget {
                     if (state is HomeSuccess) {
                       if (state.doctors.isEmpty) {
                         return  Padding(
-                          padding:  EdgeInsets.all(50.0),
+                          padding:  EdgeInsets.all(50.0.h),
                           child: Image.asset('assets/category_images/searchError.jpg',
                           ),
                         );
@@ -85,8 +86,8 @@ class HomeViewBody extends StatelessWidget {
                         itemBuilder: (context, index) {
                           return GestureDetector(
                             onTap: (){
-                              Navigator.pushNamed(context, DetailsView.routeName, arguments: state.doctors[index].id);
-                              print(state.doctors[index].id);
+                              Navigator.pushNamed(context, DetailsView.routeName, arguments: state.doctors[index].uid);
+                              print(state.doctors[index].uid);
                             },
                               child: DoctorCard(doctor: state.doctors[index]));
                         },
@@ -96,7 +97,7 @@ class HomeViewBody extends StatelessWidget {
                     return const SizedBox.shrink();
                   },
                 ),
-                SizedBox(height: 40,)
+                SizedBox(height: 40.h,)
               ],
             ),
           ),

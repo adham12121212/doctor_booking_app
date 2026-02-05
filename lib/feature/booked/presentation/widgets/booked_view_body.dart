@@ -7,6 +7,8 @@ import '../../../../core/constants/app_colors.dart';
 import '../../../../core/constants/app_texts.dart';
 import '../../../../core/widgets/animation_button.dart';
 import '../../../../core/widgets/custom_app_bar.dart';
+import '../../../../core/widgets/custom_snack_bar.dart';
+import '../../../home/presentation/view/home_view.dart';
 import '../cubit/booked_cubit.dart';
 import 'appointment_day_widget.dart';
 import 'available_time_widget.dart';
@@ -15,7 +17,7 @@ import 'available_time_widget.dart';
 class BookedViewBody extends StatelessWidget {
   const BookedViewBody({super.key, required this.doctorId});
 
-  final int doctorId;
+  final String doctorId;
 
   @override
   Widget build(BuildContext context) {
@@ -35,6 +37,10 @@ class BookedViewBody extends StatelessWidget {
             return Center(child: Text(state.error));
           }
           if (state is HomeSuccess) {
+            final doctor = state.doctors.firstWhere(
+                  (d) => d.uid == doctorId, // لو اسمها uid غيّرها
+              orElse: () => throw Exception('Doctor not found: $doctorId'),
+            );
             return Column(
               crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -50,7 +56,7 @@ class BookedViewBody extends StatelessWidget {
                       children: [
                         ClipRRect(
                           borderRadius: BorderRadius.circular(20),
-                          child: Image.network(state.doctors[doctorId].image,
+                          child: Image.network(doctor.image,
                           width: double.infinity,
                           fit: BoxFit.fitWidth,
                             height: 200.h,
@@ -70,9 +76,9 @@ class BookedViewBody extends StatelessWidget {
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  Text(state.doctors[doctorId].name,
+                                  Text(doctor.name,
                                     style: AppTextStyles.bold20.copyWith(color: Colors.white),),
-                                  Text(state.doctors[doctorId].speciality,
+                                  Text(doctor.speciality,
                                     style: AppTextStyles.semiBold16.copyWith(color: Colors.white),),
                                 ],
                               )
@@ -98,19 +104,12 @@ class BookedViewBody extends StatelessWidget {
                 child: AnimatedConfirmButton(
                   text: 'Confirm Booking',
                   onPressedAsync: () async {
-                    await context.read<BookedCubit>().confirmBooking(state.doctors[doctorId].name);
-
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(content: Text('Booking confirmed')),
-                    );
+                    await context.read<BookedCubit>().confirmBooking(doctor.name,doctor.image,doctor.uid);
+                     Navigator.of(context).pushReplacementNamed(HomeView.routeName);
+                     CustomSnackBar().successBar(context, 'Booking confirmed');
                   },
                 ),
               ),
-
-
-
-
-
 
             ],
           );}

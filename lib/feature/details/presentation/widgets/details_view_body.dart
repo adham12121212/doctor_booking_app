@@ -13,7 +13,7 @@ import 'doctor_details.dart';
 class DetailsViewBody extends StatelessWidget {
   const DetailsViewBody({super.key, required this.doctorId});
 
-  final int doctorId;
+  final String doctorId;
 
   @override
   Widget build(BuildContext context) {
@@ -36,43 +36,57 @@ class DetailsViewBody extends StatelessWidget {
            return Center(child: Text(state.error));
          }
          if (state is HomeSuccess) {
+           final doctor = state.doctors.firstWhere(
+                 (d) => d.uid == doctorId,
+             orElse: () => throw Exception('Doctor not found: $doctorId'),
+           );
+
            return Column(
              crossAxisAlignment: CrossAxisAlignment.start,
              children: [
                CustomAppBar(title: 'Doctor', showBackButton: true,),
                SizedBox(height: 32.h),
+
                DoctorCardDetailsWidgets(
-                 image: state.doctors[doctorId].image,
-                 name: state.doctors[doctorId].name,
-                 speciality: state.doctors[doctorId].speciality,),
+                 image: doctor.image,
+                 name: doctor.name,
+                 speciality: doctor.speciality,
+               ),
+
                SizedBox(height: 20.h),
+
                Row(
                  mainAxisAlignment: MainAxisAlignment.spaceAround,
                  children: [
                    DoctorDetails(
-                     title: state.doctors[doctorId].experienceYears.toString(),
+                     title: doctor.experienceYears.toString(),
                      subtitle: 'Years',
-                     iconPath: 'assets/details_icons/exp.svg',),
+                     iconPath: 'assets/details_icons/exp.svg',
+                   ),
                    DoctorDetails(
-                       title: state.doctors[doctorId].patients.toString(),
-                       subtitle: 'Patients',
-                       iconPath: 'assets/details_icons/patient.svg'),
+                     title: doctor.patients.toString(),
+                     subtitle: 'Patients',
+                     iconPath: 'assets/details_icons/patient.svg',
+                   ),
                    DoctorDetails(
-                     title: state.doctors[doctorId].rating.toString(),
+                     title: doctor.rating.toString(),
                      subtitle: 'Rating',
-                     iconPath: 'assets/details_icons/star-fill.svg',),
+                     iconPath: 'assets/details_icons/star-fill.svg',
+                   ),
                    DoctorDetails(
-                     title: state.doctors[doctorId].reviews.toString(),
+                     title: doctor.reviews.toString(),
                      subtitle: 'Reviews',
-                     iconPath: 'assets/details_icons/message fill.svg',),
+                     iconPath: 'assets/details_icons/message fill.svg',
+                   ),
                  ],
                ),
+
                SizedBox(height: 20.h),
-               Text('About Me', style: AppTextStyles.semiBold18,),
+               Text('About Me:', style: AppTextStyles.semiBold18,),
                SizedBox(height: 10.h),
-               SeeMoreText(
-                   text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'),
+               SeeMoreText(text: doctor.aboutText ?? 'No bio yet'),
                SizedBox(height: 20.h),
+
              ],
            );
          }

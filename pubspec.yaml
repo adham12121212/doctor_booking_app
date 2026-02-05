@@ -52,6 +52,10 @@ dependencies:
   modal_progress_hud_nsn:
   cloud_firestore:
   skeletonizer: ^2.1.2
+  image_picker:
+  supabase_flutter:
+  url_launcher:
+
 
 
 dev_dependencies:
